@@ -13,6 +13,6 @@ extend type Mutation {
 type TaskCategory {
   id: ID!
   name: String!
-#   tasks: [Task!]! @hasMany
-#   taskCount: Int! @count(model: "Task")
+  tasks: [Task!]! @hasMany
+  taskCount: Int! @count(model: "Task")
 }

@@ -20,8 +20,8 @@ class TaskFactory extends Factory
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
             'status' => $this->faker->randomElement(['not_started', 'in_progress', 'completed']),
-            'task_category_id' => $this->faker->numberBetween(1, 5),
-            'user_id' => $this->faker->numberBetween(1, 5),
+            'task_category_id' => $this->faker->numberBetween(1, 3),
+            'user_id' => $this->faker->numberBetween(1, 3),
             'due_date' => $this->faker->dateTimeBetween('-1 week', '+1 week'),
         ];
     }
