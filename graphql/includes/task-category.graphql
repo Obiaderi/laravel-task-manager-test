@@ -1,0 +1,18 @@
+extend type Query {
+    taskCategories: [TaskCategory!] @all
+    taskCategory(id: ID! @eq): TaskCategory @find
+}
+
+extend type Mutation {
+    createTaskCategory(name: String!): TaskCategory @create
+    updateTaskCategory(id: ID! @eq, name: String!): TaskCategory @update
+    deleteTaskCategory(id: ID! @eq): TaskCategory @delete
+}
+
+
+type TaskCategory {
+  id: ID!
+  name: String!
+#   tasks: [Task!]! @hasMany
+#   taskCount: Int! @count(model: "Task")
+}

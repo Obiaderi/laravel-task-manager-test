@@ -1,0 +1,39 @@
+extend type Query {
+    tasks: [Task!]! @all
+    task(id: ID! @eq): Task @find
+}
+
+type Mutation {
+    createTask(
+        title: String @rules(apply: ["required", "max:255"])
+        description: String
+        status: TaskStatus @rules(apply: ["required", "in:completed,not_started,in_progress"])
+        task_category_id: ID! @rules(apply: ["required", "exists:task_categories,id"])
+        user_id: ID! @rules(apply: ["required", "exists:users,id"])
+    ): Task @create
+    updateTask(
+        id: ID! @rules(apply: ["required", "exists:tasks,id"])
+        title: String
+        description: String
+        status: TaskStatus
+        task_category_id: ID
+    ): Task @update
+    deleteTask(id: ID!): Task @delete
+}
+
+
+type Task {
+    id: ID!
+    title: String!
+    description: String!
+    status: TaskStatus!
+    taskCategory: TaskCategory @belongsTo
+    created_at: String!
+    updated_at: String!
+}
+
+enum TaskStatus {
+  NOT_STARTED @enum(value: "not_started")
+  IN_PROGRESS @enum(value: "in_progress")
+  COMPLETED @enum(value: "completed")
+}
